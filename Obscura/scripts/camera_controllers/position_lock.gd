@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
-		
+	
 	#var tpos = target.global_position
 	#var cpos = global_position
 
@@ -34,7 +34,6 @@ func draw_logic() -> void:
 	mesh_instance.mesh = immediate_mesh
 	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	
-	var size_cross = 5
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	
 	immediate_mesh.surface_add_vertex(Vector3(-horiz_cross_length, 0, 0))

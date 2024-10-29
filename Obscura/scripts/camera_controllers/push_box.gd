@@ -1,7 +1,6 @@
 class_name PushBox
 extends CameraControllerBase
 
-
 @export var box_width:float = 10.0
 @export var box_height:float = 10.0
 
@@ -67,8 +66,8 @@ func draw_logic() -> void:
 	
 	immediate_mesh.surface_add_vertex(Vector3(left, 0, top))
 	immediate_mesh.surface_add_vertex(Vector3(right, 0, top))
+	
 	immediate_mesh.surface_end()
-
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = Color.BLACK
 	
