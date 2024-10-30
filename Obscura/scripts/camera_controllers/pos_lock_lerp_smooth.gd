@@ -3,9 +3,9 @@ extends CameraControllerBase
 
 @export var vert_cross_length:float = 5.0
 @export var horiz_cross_length:float = 5.0
-@export var follow_speed:float = 2.0
-@export var catchup_speed:float = 4.0
-@export var leash_distance:float = 200.0
+@export var follow_speed:float = 2.5
+@export var catchup_speed:float = vessel.BASE_SPEED
+@export var leash_distance:float = 25.0
 
 @onready var vessel:Vessel = %Vessel
 #camera position
@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		return 
 	
 	var distance_from_vessel = global_position.distance_to(vessel.global_position)
-	if distance_from_vessel > leash_distance:
+	if distance_from_vessel >= leash_distance:
 		#once the vessel breaks the leash the camera will now follow the vessel
 		_target_pos = vessel.global_position
 		_target_pos.y = dist_above_target
