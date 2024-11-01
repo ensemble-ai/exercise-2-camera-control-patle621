@@ -44,21 +44,21 @@ func _process(delta: float) -> void:
 	
 	# Boundary checks for the outerbox.
 	# Left	
-	var diff_between_left_edges_outter = (tpos.x - target.WIDTH / 2.0) - (cpos.x + outer_box_left)
-	if diff_between_left_edges_outter < 0:
-		global_position.x += diff_between_left_edges_outter
+	var diff_between_left_edges_outer = (tpos.x - target.WIDTH / 2.0) - (cpos.x + outer_box_left)
+	if diff_between_left_edges_outer < 0:
+		global_position.x += diff_between_left_edges_outer
 	# Right
-	var diff_between_right_edges_outter = (tpos.x + target.WIDTH / 2.0) - (cpos.x + outer_box_right)
-	if diff_between_right_edges_outter > 0:
-		global_position.x += diff_between_right_edges_outter
+	var diff_between_right_edges_outer = (tpos.x + target.WIDTH / 2.0) - (cpos.x + outer_box_right)
+	if diff_between_right_edges_outer > 0:
+		global_position.x += diff_between_right_edges_outer
 	# Top
-	var diff_between_top_edges_outter = (tpos.z - target.HEIGHT / 2.0) - (cpos.z + outer_box_top)
-	if diff_between_top_edges_outter < 0:
-		global_position.z += diff_between_top_edges_outter
+	var diff_between_top_edges_outer = (tpos.z - target.HEIGHT / 2.0) - (cpos.z + outer_box_top)
+	if diff_between_top_edges_outer < 0:
+		global_position.z += diff_between_top_edges_outer
 	# Bottom
-	var diff_between_bottom_edges_outter = (tpos.z + target.HEIGHT / 2.0) - (cpos.z + outer_box_bottom)
-	if diff_between_bottom_edges_outter > 0:
-		global_position.z += diff_between_bottom_edges_outter
+	var diff_between_bottom_edges_outer = (tpos.z + target.HEIGHT / 2.0) - (cpos.z + outer_box_bottom)
+	if diff_between_bottom_edges_outer > 0:
+		global_position.z += diff_between_bottom_edges_outer
 	
 	velocity = target.velocity
 	var speed = velocity.length()
@@ -66,6 +66,8 @@ func _process(delta: float) -> void:
 	if speed > 0.1:
 		var diff_between_left_edges_inner = (tpos.x - target.WIDTH / 2.0) - (cpos.x + inner_box_left)
 		if diff_between_left_edges_inner < 0:
+			# Since player is moving, not touching the outer box edge, and in between the two boxes 
+			# push_ratio is * by speed of the target 
 			global_position.x += diff_between_left_edges_inner * push_ratio * delta
 	# Right
 		var diff_between_right_edges_inner = (tpos.x + target.WIDTH / 2.0) - (cpos.x + inner_box_right)
