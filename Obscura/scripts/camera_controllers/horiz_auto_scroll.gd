@@ -16,8 +16,7 @@ func _ready() -> void:
 	scroll_position = target.position
 	position = Vector3(scroll_position.x, dist_above_target, scroll_position.z)
 	rotation_degrees = Vector3(-90, 0, 0)
-
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !current: 
@@ -34,7 +33,7 @@ func _process(delta: float) -> void:
 	# Updates the cam pos to match with the scroll pos.
 	position = Vector3(scroll_position.x, dist_above_target, scroll_position.z)
 	
-	# Calculate the left side of boundary box.
+	# Calculate the of boundarys box.
 	var box_left = scroll_position.x + top_left.x
 	var box_right = scroll_position.x + bottom_right.x
 	var box_top = scroll_position.z + top_left.y
@@ -46,7 +45,6 @@ func _process(delta: float) -> void:
 	
 	super(delta)
 	
-		
 func draw_logic() -> void:
 
 	var mesh_instance := MeshInstance3D.new()

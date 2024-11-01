@@ -92,6 +92,7 @@ func draw_logic() -> void:
 	mesh_instance.mesh = immediate_mesh
 	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	
+	# Set up Boundries for both boxes.
 	var outer_box_left = pushbox_top_left.x
 	var outer_box_right = pushbox_bottom_right.x
 	var outer_box_top = pushbox_top_left.y

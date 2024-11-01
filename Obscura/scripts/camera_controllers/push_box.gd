@@ -9,7 +9,6 @@ func _ready() -> void:
 	super()
 	position = target.position
 	
-
 func _process(delta: float) -> void:
 	if !current:
 		return
@@ -39,7 +38,6 @@ func _process(delta: float) -> void:
 		global_position.z += diff_between_bottom_edges
 		
 	super(delta)
-
 
 func draw_logic() -> void:
 	var mesh_instance := MeshInstance3D.new()

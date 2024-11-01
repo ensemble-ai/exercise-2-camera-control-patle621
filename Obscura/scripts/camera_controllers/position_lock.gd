@@ -9,8 +9,7 @@ func _ready() -> void:
 	super()
 	position = Vector3(target.position.x, dist_above_target, target.position.z)
 	rotation_degrees = Vector3(-90, 0, 0)
-
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !current: 

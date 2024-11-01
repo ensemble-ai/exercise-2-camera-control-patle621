@@ -4,14 +4,14 @@ extends CameraControllerBase
 @export var vert_cross_length:float = 5.0
 @export var horiz_cross_length:float = 5.0
 
-#Should be faster than vessel.
+# Should be faster than vessel.
 @export var lead_speed:float = 2.0
 @export var catchup_delay_duration:float = 0.15
 @export var catchup_speed:float = 2.0
 @export var leash_distance:float = 5.0
 
 @onready var vessel:Vessel = %Vessel
-#camera position
+# Camera position.
 var target_pos: Vector3
 var time_stopped: float = 0.0
 var previous_position: Vector3
@@ -24,9 +24,7 @@ func _ready() -> void:
 	position = Vector3(target.position.x, dist_above_target, target.position.z)
 	rotation_degrees = Vector3(-90, 0, 0)
 	target_pos = position 
-	#previous_position = vessel.global_position
-
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !current:
@@ -55,8 +53,7 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
-	
-			
+		
 func draw_logic() -> void:
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()
