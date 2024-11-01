@@ -1,15 +1,15 @@
 class_name FourWaySpeedupPushZone
 extends CameraControllerBase
 
-var push_ratio:float = 10
+var push_ratio:float = 5
 
 # Outer Box
-var pushbox_top_left: Vector2 = Vector2(-5, -5)
-var pushbox_bottom_right: Vector2 = Vector2(5, 5)
+var pushbox_top_left: Vector2 = Vector2(-10, -10)
+var pushbox_bottom_right: Vector2 = Vector2(10, 10)
 
 # Inner Box
-var pushbox_zone_top_left: Vector2 = Vector2(-2.5, -2.5)
-var pushbox_zone_bottom_right: Vector2 = Vector2(2.5, 2.5)
+var pushbox_zone_top_left: Vector2 = Vector2(-5, -5)
+var pushbox_zone_bottom_right: Vector2 = Vector2(5, 5)
 
 var velocity: Vector3
 
@@ -131,3 +131,4 @@ func draw_logic() -> void:
 	# Mesh is freed after one update of _process.
 	await get_tree().process_frame
 	mesh_instance.queue_free()
+	
