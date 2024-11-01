@@ -112,7 +112,7 @@ target = NodePath("../Vessel")
 
 [node name="LerpSmoothingTargetFocus" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 projection = 1
-size = 49.571
+size = 50.0
 script = ExtResource("10_xu40a")
 target = NodePath("../Vessel")
 

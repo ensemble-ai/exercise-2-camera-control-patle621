@@ -5,9 +5,9 @@ extends CameraControllerBase
 @export var horiz_cross_length:float = 5.0
 
 #Should be faster than vessel.
-@export var lead_speed:float = 2
+@export var lead_speed:float = 2.0
 @export var catchup_delay_duration:float = 0.15
-@export var catchup_speed:float = 2
+@export var catchup_speed:float = 2.0
 @export var leash_distance:float = 5.0
 
 @onready var vessel:Vessel = %Vessel
@@ -17,7 +17,7 @@ var time_stopped: float = 0.0
 var previous_position: Vector3
 var velocity: Vector3
 
-
+# Zoom does not work since projection is on orthogonal.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
@@ -81,6 +81,6 @@ func draw_logic() -> void:
 	mesh_instance.global_transform = Transform3D.IDENTITY
 	mesh_instance.global_position = Vector3(global_position.x, target.global_position.y, global_position.z)
 	
-	#mesh is freed after one update of _process
+	# Mesh is freed after one update of _process.
 	await get_tree().process_frame
 	mesh_instance.queue_free()

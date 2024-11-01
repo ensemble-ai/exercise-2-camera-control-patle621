@@ -11,6 +11,7 @@ extends CameraControllerBase
 # Camera position
 var target_pos: Vector3
 
+# Zoom does not work since projection is on orthogonal.
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
@@ -66,6 +67,6 @@ func draw_logic() -> void:
 	mesh_instance.global_transform = Transform3D.IDENTITY
 	mesh_instance.global_position = Vector3(global_position.x, target.global_position.y, global_position.z)
 	
-	#mesh is freed after one update of _process
+	# Mesh is freed after one update of _process.
 	await get_tree().process_frame
 	mesh_instance.queue_free()
