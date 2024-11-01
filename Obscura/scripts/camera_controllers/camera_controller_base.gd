@@ -7,7 +7,7 @@ extends Camera3D
 @export var zoom_speed:float = 10.0
 @export var min_zoom:float = 5.0
 @export var max_zoom:float = 100.0
-@export var draw_camera_logic:bool = true
+@export var draw_camera_logic:bool = false
 
 #camera tilt around the z axis in radians
 #var _camera_tilt_rad:float = 0.0
@@ -17,8 +17,8 @@ func _ready() -> void:
 	current = false
 	position += Vector3(0.0, dist_above_target, 0.0) 
 
-
 func _process(delta: float) -> void:
+	draw_camera_logic = true
 	if Input.is_action_just_pressed("fire1"):
 		draw_camera_logic = !draw_camera_logic
 	if Input.is_action_pressed("zoom_in"):

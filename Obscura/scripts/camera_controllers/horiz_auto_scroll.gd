@@ -3,12 +3,12 @@ extends CameraControllerBase
 
 @export var top_left: Vector2 = Vector2(-5, -5)
 @export var bottom_right: Vector2 = Vector2(5, 5)
-@export var auto_scroll_speed: Vector3 = Vector3(1, 0 ,0)
+@export var auto_scroll_speed: Vector3 = Vector3(1, 0, 0)
 
 @export var box_width:float = 11.0
 @export var box_height:float = 11.0
 
-var scroll_position: Vector3 = Vector3.ZERO
+var scroll_position: Vector3 = Vector3(0, 0, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,25 +26,22 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
+	# Moves the scroll position and vessel at the same speed.
 	scroll_position += auto_scroll_speed * delta
 	
 	target.position += auto_scroll_speed * delta
 	
+	# Updates the cam pos to match with the scroll pos.
 	position = Vector3(scroll_position.x, dist_above_target, scroll_position.z)
 	
-	#calculate the left side of boundary box
+	# Calculate the left side of boundary box.
 	var box_left = scroll_position.x + top_left.x
-	if target.position.x < box_left:
-		target.position.x = box_left
-		
-	#calculate the right side of boundary box
 	var box_right = scroll_position.x + bottom_right.x
-	#clamp is used to keep the player within the boundries of the left and right side of the box
-	target.position.x = clamp(target.position.x, box_left, box_right)
-	
 	var box_top = scroll_position.z + top_left.y
 	var box_bottom = scroll_position.z + bottom_right.y
-	#clamp is used to keep the player within the boundries of the top and bottom side of the box 
+	
+	# Clamp is used to keep the player within the boundries of the box.
+	target.position.x = clamp(target.position.x, box_left, box_right)
 	target.position.z = clamp(target.position.z, box_top, box_bottom)
 	
 	super(delta)

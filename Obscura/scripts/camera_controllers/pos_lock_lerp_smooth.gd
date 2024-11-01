@@ -8,15 +8,15 @@ extends CameraControllerBase
 @export var leash_distance:float = 25.0
 
 @onready var vessel:Vessel = %Vessel
-#camera position
-var _target_pos: Vector3
+# Camera position
+var target_pos: Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 	position = Vector3(target.position.x, dist_above_target, target.position.z)
 	rotation_degrees = Vector3(-90, 0, 0)
-	_target_pos = position 
+	target_pos = position 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -24,17 +24,17 @@ func _process(delta: float) -> void:
 		return 
 	
 	var distance_from_vessel = global_position.distance_to(vessel.global_position)
-	if distance_from_vessel >= leash_distance:
-		#once the vessel breaks the leash the camera will now follow the vessel
-		_target_pos = vessel.global_position
-		_target_pos.y = dist_above_target
-		position = position.lerp(_target_pos, catchup_speed * delta)
+	if distance_from_vessel >= leash_distance:	
+		# Once the vessel breaks the leash the camera will now follow the vessel.
+		target_pos = vessel.global_position
+		target_pos.y = dist_above_target
+		position = position.lerp(target_pos, catchup_speed * delta)
 		
-	#since player is within the bounds there is no need for catchup_speed
+	# Since player is within the bounds follow_speed will be used.
 	else: 
-		_target_pos = vessel.global_position
-		_target_pos.y = dist_above_target
-		position = position.lerp(_target_pos, follow_speed * delta)
+		target_pos = vessel.global_position
+		target_pos.y = dist_above_target
+		position = position.lerp(target_pos, follow_speed * delta)
 		
 	
 	super(delta)
@@ -42,9 +42,6 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
-	#var tpos = target.global_position
-	#var cpos = global_position
-
 func draw_logic() -> void:
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()

@@ -22,9 +22,6 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
-	
-	#var tpos = target.global_position
-	#var cpos = global_position
 
 func draw_logic() -> void:
 	var mesh_instance := MeshInstance3D.new()
