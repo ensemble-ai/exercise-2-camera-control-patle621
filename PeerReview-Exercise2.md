@@ -169,10 +169,10 @@ This should be similar to the Code Style justification.
 For certian cameras where the variables are specific for the indiviual camera, they can be made private. scroll_position would be private and only used in auto scroll:
 https://github.com/ensemble-ai/exercise-2-camera-control-patle621/blob/5fc9dff61d3a3b8c6803bf877a2583dcdd1e1f15/Obscura/scripts/camera_controllers/horiz_auto_scroll.gd#L11 
 
-Vessel has already been tied to an export variable in the CameraControllerBase class, and it is called target:
+Vessel has already been tied to an export variable in the CameraControllerBase class, and it is called target. This would be a case of redundancy since the vessel will have multiple references (ex: the variable vessel and the variable target refer to the same thing):
 https://github.com/ensemble-ai/exercise-2-camera-control-patle621/blob/5fc9dff61d3a3b8c6803bf877a2583dcdd1e1f15/Obscura/scripts/camera_controllers/lerp_smooth.gd#L13
 
-It is beneficial to use _physics_process instead of _process to deal with the vessel's movement. Personally, it made my jittering issue go away and it didn't matter what frame rate I ran my game at.
+It is beneficial to use _physics_process instead of _process to deal with the vessel's movement. Personally, doing this fixed/prevented my vessel from jittering when it reached the leash distance and it didn't matter what frame rate I ran my game at.
 
 #### Best Practices Exemplars ####
 The comments that were added in each function complemented the code very well. The comments themselves weren't too verbose and were straight to the point. I see that a good amount of commits were made as well which is great for version control and for tracking progress! Again, the spacing between code blocks that handled different logic made the code more intutive to understand.
